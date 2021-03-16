@@ -17,6 +17,7 @@ local.properties
 
 # ignore jdbc file
 context-jdbc.xml
+./target/classes/config/context-jdbc.xml
 
 # External tool builders
 .externalToolBuilders/
