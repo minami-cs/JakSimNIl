@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+#list_table {
+	width: 800px;
+	margin: 0 auto;
+	font-size: 14px;
+}
+
+h2 {
+	text-align: center;
+}
+
+#list_table a {
+	text-decoration: none;
+	color: black;
+}
+
+#list_table a:hover {
+	color: #F11C6E;
+}
+
+#thead {
+	background-color: #F11C6E;
+	color: white;
+	font-weight: 800px;
+	font-size: 17px;
+}
+
+.number {
+	width: 5%;
+	text-align: center;
+}
+
+.duration {
+	width: 12%;
+	text-align: center;
+}
+
+.title {
+	width: 60%;
+	text-align: center;
+}
+
+.writer {
+	width: 13%;
+	text-align: center;
+}
+
+.date {
+	width: 10%;
+	text-align: center;
+}
+
+#btn {
+	text-align: right;
+	display: block;
+}
+
+button {
+	width: 150px;
+}
+
+#write {
+	margin-top: 14px;
+	margin-right: 78px;
+	padding: 10px 30px;
+}

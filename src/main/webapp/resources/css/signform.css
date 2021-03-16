@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+form, table {
+	width: 400px;
+	margin: 0 auto;
+}
+
+form h2 {
+	text-align: center;
+}
+
+.td_left {
+	width: 20%;
+	padding-right: 5px;
+}
+
+.td_right {
+	width: 80%;
+	padding-left: 3px;
+}
+
+.td_merge {
+	width: 50px;
+}
+
+tr {
+	height: 28px;
+}
+
+input {
+	width: 70%;
+}
