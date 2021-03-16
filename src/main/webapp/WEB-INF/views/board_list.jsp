@@ -21,7 +21,7 @@
 		<tr>
 			<td class="number">${article.board_no }</td>
 			<td class="duration">${article.j_days }일</td>
-			<td><a href="./articledetail?board_no=${article.board_no}">
+			<td><a href="./articledetail?board_no=${article.board_no}&page=${criteria.page}">
 					${article.title} </a></td>
 			<td class="writer">${article.writer }</td>
 			<td class="date"><fmt:formatDate value="${article.w_date }" pattern="yy.MM.dd" /></td>

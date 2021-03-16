@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.jaksim.jsni.bean.Board;
+import com.jaksim.jsni.bean.BoardCriteria;
 
 public class BoardDAOImpl implements BoardDAO {
 	private SqlSessionTemplate sqlSession;
@@ -26,6 +27,11 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<Board> queryArticles() throws Exception {
 		return sqlSession.selectList("mapper.board.selectAllArticles");
+	}
+
+	@Override
+	public int listPaging(BoardCriteria bc) throws Exception {
+		return sqlSession.selectOne("mapper.board.selectListPage");
 	}
 
 }

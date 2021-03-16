@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jaksim.jsni.bean.Board;
+import com.jaksim.jsni.bean.BoardCriteria;
 import com.jaksim.jsni.dao.BoardDAO;
 
 @Controller
@@ -81,6 +82,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/boardlist", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView boardlist(HttpServletRequest request) {
+		BoardCriteria bc = new BoardCriteria();
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			List<Board> articles = boardDao.queryArticles();
