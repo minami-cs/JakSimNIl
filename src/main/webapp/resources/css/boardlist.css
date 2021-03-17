@@ -4,6 +4,7 @@
 	width: 800px;
 	margin: 0 auto;
 	font-size: 14px;
+	border-collapse: collapse;
 }
 
 h2 {
@@ -17,6 +18,18 @@ h2 {
 
 #list_table a:hover {
 	color: #F11C6E;
+}
+
+#list_table tr {
+	height: 30px;
+}
+
+#list_table tr:not(:last-child) {
+	border-bottom: 1px solid #FCA4C6;
+}
+
+#list_table tr:last-child {
+	border-top: 2px solid #F11C6E;
 }
 
 #thead {
@@ -54,6 +67,7 @@ h2 {
 #btn {
 	text-align: right;
 	display: block;
+	margin-bottom: 16px;
 }
 
 button {
@@ -61,7 +75,34 @@ button {
 }
 
 #write {
-	margin-top: 14px;
 	margin-right: 78px;
+	margin-bottom: 16px;
 	padding: 10px 30px;
+}
+
+#searchbox {
+	margin: 0 auto;
+	width: 500px;
+	height: 40px;
+}
+
+#search {
+	width: 60px;
+	padding: 5px 10px;
+	font-size: 12px;
+	height: 30px;
+}
+
+form>input {
+	padding: 1px;
+	width: 330px;
+}
+
+form>select {
+	height: 21px;
+}
+
+#resultbox {
+	display: block;
+	margin-left: 100px;
 }

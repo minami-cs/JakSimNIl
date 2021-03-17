@@ -21,12 +21,20 @@ body {
 #wrap {
 	width: 1000px;
 	margin: 0 auto;
+	min-height: 100%;
+	padding-bottom: 120px;
+	overflow: hidden;
+	position: relative;
+}
+
+#header {
+	display: block;
+	height: 40px;
 }
 
 #contents {
-	margin-top: 80px;
-	min-height: 750px;
-	max-height: 100%;
+	min-height: 800px;
+	max-height: 100vh;
 	font-family: 'IBMPlexSansKR-Regular';
 	margin: 0 auto;
 }
@@ -40,6 +48,7 @@ button {
 	cursor: pointer;
 	font-weight: 700;
 	width: 230px;
+	overflow: hidden;
 }
 
 button:hover {

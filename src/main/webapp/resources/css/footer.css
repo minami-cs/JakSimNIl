@@ -5,11 +5,13 @@
 	height: 120px;
 	line-height: 120px;
 	background-color: #F11C6E;
-	min-width: 1000px;
+	max-width: 1000px;
+	width: 100vw;
 	font-size: 12px;
 	color: #94FB18;
 }
 
-p {
+#copyright p {
 	margin: 0;
+	text-align: center;
 }

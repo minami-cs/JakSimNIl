@@ -4,5 +4,5 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/footer.css" />
 <div id="copyright">
-	Copyright ⓒ 작심N일. All rights reserved.
+	<p>Copyright ⓒ 작심N일. All rights reserved.</p>
 </div>

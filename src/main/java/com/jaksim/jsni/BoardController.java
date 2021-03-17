@@ -1,6 +1,8 @@
 package com.jaksim.jsni;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,10 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jaksim.jsni.bean.Board;
-import com.jaksim.jsni.bean.BoardCriteria;
+import com.jaksim.jsni.bean.BoardPageMaker;
 import com.jaksim.jsni.dao.BoardDAO;
 
 @Controller
@@ -59,13 +62,13 @@ public class BoardController {
 		}
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/articledetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView articledetail(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
-			//System.out.println(board_no);
+			// System.out.println(board_no);
 			Board article = boardDao.queryArticle(board_no);
 			if (article == null)
 				throw new Exception();
@@ -81,18 +84,34 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardlist", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView boardlist(HttpServletRequest request) {
-		BoardCriteria bc = new BoardCriteria();
+	public ModelAndView boardlist(@RequestParam(defaultValue = "all") String searchOption,
+			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage)
+			throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		try {
-			List<Board> articles = boardDao.queryArticles();
-			if (articles.size() == 0)
-				throw new Exception();
-			modelAndView.addObject("articles", articles);
-			modelAndView.addObject("page", "board_list");
+			// 게시글 수 계산
+			int count = boardDao.countArticle(searchOption, keyword);
+
+			// 페이징
+			BoardPageMaker boardPageMaker = new BoardPageMaker(count, curPage);
+			int start = boardPageMaker.getPageStart();
+			int end = boardPageMaker.getPageEnd();
+
+			List<Board> articles = boardDao.queryArticles(start, end, searchOption, keyword);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("articles", articles);
+			map.put("count", count);
+			map.put("searchOption", searchOption);
+			map.put("keyword", keyword);
+			map.put("boardPageMaker", boardPageMaker);
+			modelAndView.addObject("map", map);
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			modelAndView.addObject("err", "게시판 오류");
+			modelAndView.addObject("page", "err");
 		}
+		modelAndView.addObject("page", "board_list");
 		modelAndView.setViewName("template");
 		return modelAndView;
 	}

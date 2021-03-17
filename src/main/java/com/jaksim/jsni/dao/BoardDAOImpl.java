@@ -1,11 +1,12 @@
 package com.jaksim.jsni.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.jaksim.jsni.bean.Board;
-import com.jaksim.jsni.bean.BoardCriteria;
 
 public class BoardDAOImpl implements BoardDAO {
 	private SqlSessionTemplate sqlSession;
@@ -25,13 +26,21 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<Board> queryArticles() throws Exception {
-		return sqlSession.selectList("mapper.board.selectAllArticles");
+	public List<Board> queryArticles(int start, int end, String searchOption, String keyword) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("mapper.board.selectAllArticles", map);
 	}
 
 	@Override
-	public int listPaging(BoardCriteria bc) throws Exception {
-		return sqlSession.selectOne("mapper.board.selectListPage");
+	public int countArticle(String searchOption, String keyword) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		return sqlSession.selectOne("mapper.board.countArticles", map);
 	}
 
 }
