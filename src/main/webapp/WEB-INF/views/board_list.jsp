@@ -86,8 +86,9 @@
 					<a href="./boardlist?curPage=${map.boardPageMaker.totalPage}">[끝]</a>
 				</c:if></td>
 		</tr>
+		<tr>
+			<td colspan="5" align="right"><a href="./boardwrite"><button
+						id="write">글쓰기</button></a></td>
+		</tr>
 	</tbody>
 </table>
-<div id="btn">
-	<a href="./boardwrite"><button id="write">글쓰기</button></a>
-</div>

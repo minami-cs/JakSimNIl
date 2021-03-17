@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+p {
+	margin: 0;
+}
+
+#i_wrap {
+	height: 100vh;
+	background-image: url("../img/index_background.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+#i_content {
+	margin: 0 auto;
+	width: 800px;
+	text-align: left;
+	display: block;
+}
+
+#i_htext {
+	font-size: 50px;
+	font-weight: 800;
+	line-height: 70px;
+	margin-top: 120px;
+}
+
+#i_ctext {
+	margin-top: 40px;
+	margin-left: 8px;
+	font-size: 24px;
+	font-weight: 600;
+}

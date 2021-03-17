@@ -9,6 +9,10 @@
 
 h2 {
 	text-align: center;
+	padding: 40px 0;
+	background-color: #EEEEEE;
+	margin: 0;
+	margin-bottom: 12px;
 }
 
 #list_table a {
@@ -64,18 +68,12 @@ h2 {
 	text-align: center;
 }
 
-#btn {
-	text-align: right;
-	display: block;
-	margin-bottom: 16px;
-}
-
 button {
 	width: 150px;
 }
 
 #write {
-	margin-right: 78px;
+	margin-top: 16px;
 	margin-bottom: 16px;
 	padding: 10px 30px;
 }
@@ -105,4 +103,10 @@ form>select {
 #resultbox {
 	display: block;
 	margin-left: 100px;
+}
+
+@media screen and (max-width: 1000px) {
+	#list_table {
+		max-width: 630px;
+	}
 }

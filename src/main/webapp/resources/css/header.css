@@ -14,7 +14,13 @@ a {
 
 #h_wrap {
 	overflow: hidden;
-	margin-top: 8px;
+	margin: 0 auto;
+	padding: 30px 0;
+	/* background-color: rgba(255,255,255,0.6); */
+}
+
+nav {
+	margin: 0 200px;
 }
 
 #logo img {
@@ -27,16 +33,24 @@ a {
 
 ul {
 	float: right;
-	width: 260px;
+	width: 400px;
 	margin: 0;
-	margin-top: 12px;
+	margin-top: 18px;
+	text-align: right;
 }
 
 li {
 	list-style-type: none;
 	display: inline;
 	font-family: 'Cafe24Ohsquare';
-	padding-right: 16px;
 	text-align: right;
 	font-size: 18px;
+}
+
+li:not(:last-child) {
+	padding-right: 40px;
+}
+
+li:last-child {
+	padding-right: 16px;
 }

@@ -4,7 +4,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/signform.css" />
 <form action="./join" method="post">
-	<h2>회원가입</h2>
+	<h2>간편회원가입</h2>
 	<table>
 		<tr>
 			<td class="td_left"><label for="id">아이디</label></td>

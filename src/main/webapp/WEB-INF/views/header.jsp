@@ -4,10 +4,10 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
 <div id="h_wrap">
-	<div id="logo">
-		<a href="./"><img src="${path}/resources/img/logo.png" /></a>
-	</div>
 	<nav>
+		<div id="logo">
+			<a href="./"><img src="${path}/resources/img/logo.png" /></a>
+		</div>
 		<ul>
 			<li><a href="./boardlist">작심하기</a></li>
 			<c:choose>
