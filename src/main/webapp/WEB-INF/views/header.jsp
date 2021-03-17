@@ -4,8 +4,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
 <div id="h_wrap">
-	<div id="title">
-		<h1><a href="./">작심N일</a></h1>
+	<div id="logo">
+		<a href="./"><img src="${path}/resources/img/logo.png" /></a>
 	</div>
 	<nav>
 		<ul>
