@@ -43,7 +43,7 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		session.setAttribute("writer", id);
 		String writerid = (String) session.getAttribute("writer");
-		System.out.println(writerid);
+		//System.out.println(writerid);
 
 		try {
 			Board article = new Board();
@@ -63,7 +63,7 @@ public class BoardController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/articledetail", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/boarddetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView articledetail(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		try {
@@ -75,7 +75,7 @@ public class BoardController {
 				throw new Exception();
 			modelAndView.addObject("curPage", curPage);
 			modelAndView.addObject("article", article);
-			modelAndView.addObject("page", "article_view");
+			modelAndView.addObject("page", "board_detail");
 			boardDao.countHit(board_no);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,6 +116,40 @@ public class BoardController {
 		}
 		modelAndView.addObject("page", "board_list");
 		modelAndView.setViewName("template");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/boardmodify", method = RequestMethod.GET)
+	public String boardmodify(HttpServletRequest request, Model model) throws Exception {
+		int board_no = Integer.parseInt(request.getParameter("board_no"));
+		Board article = boardDao.queryArticle(board_no);
+		model.addAttribute("writer", article.getWriter());
+		model.addAttribute("title", article.getTitle());
+		model.addAttribute("category", article.getCategory());
+		model.addAttribute("content", article.getContent());
+		model.addAttribute("board_no", board_no);
+		model.addAttribute("page", "board_modify_form");
+		return "template";
+	}
+	
+	@RequestMapping(value = "/boardupdate", method = RequestMethod.POST)
+	public ModelAndView boardupdate(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			Board article = new Board();
+			article.setCategory(request.getParameter("category"));
+			article.setTitle(request.getParameter("title"));
+			article.setContent(request.getParameter("content"));
+			article.setJ_days(Integer.parseInt(request.getParameter("j_days")));
+			boardDao.modifyArticle(article);
+			modelAndView.addObject("article", article);
+			modelAndView.setViewName("redirect:./boardlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelAndView.addObject("err", "수정 오류");
+			modelAndView.addObject("page", "err");
+			modelAndView.setViewName("template");
+		}
 		return modelAndView;
 	}
 }

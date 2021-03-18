@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/boardwrite.css" />
-<!-- 게시판 등록 -->
+<!-- 게시글 등록 -->
 <form action="./boardwrite" method="post">
 	<input type="hidden" name="id" value="${id }" />
 	<h2>작심 글 등록</h2>
@@ -15,9 +15,9 @@
 		<tr>
 			<td class="td_left"><label for="category">카테고리</label></td>
 			<td class="td_right"><select name="category">
-					<option value="study" id="category">공부</option>
-					<option value="work_out" id="category">운동</option>
-					<option value="hobby" id="category">취미</option>
+					<option value="공부" id="category">공부</option>
+					<option value="운동" id="category">운동</option>
+					<option value="취미" id="category">취미</option>
 			</select></td>
 		</tr>
 		<tr>
@@ -48,4 +48,4 @@
 		</tr>
 	</table>
 </form>
-<!-- 게시판 등록 -->
+<!-- 게시글 등록 -->

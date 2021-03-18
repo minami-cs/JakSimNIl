@@ -2,18 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.board">
+	<!-- 게시글 생성 -->
 	<insert id="insertArticle"
 		parameterType="com.jaksim.jsni.bean.Board">
 		<![CDATA[insert into boardj(board_no,category,writer,title,content,j_days)
 		values((SELECT NVL(MAX(board_no)+1,1) FROM boardj),#{category},#{writer},#{title},#{content},#{j_days})]]>
 	</insert>
+	<!-- 조회수 -->
 	<update id="updateHit" parameterType="int">
 		<![CDATA[update boardj set v_count = v_count + 1 where board_no = #{board_no}]]>
 	</update>
+	<!-- 게시글 수정 -->
+	<update id="updateArticle"
+		parameterType="com.jaksim.jsni.bean.Board">
+		<![CDATA[update boardj set title = #{title}, content = #{content}, j_days = #{j_days}, category = #{category}
+		where board_no = #{board_no}]]>
+	</update>
+	<!-- 특정 게시글 query -->
 	<select id="selectArticle"
 		resultType="com.jaksim.jsni.bean.Board" parameterType="int">
 		<![CDATA[select * from boardj where board_no = #{board_no} ]]>
 	</select>
+	<!-- 게시판 검색 -->
 	<select id="selectAllArticles"
 		resultType="com.jaksim.jsni.bean.Board">
 		<include refid="pagingHeader" />
@@ -22,6 +32,7 @@
 		<![CDATA[order by board_no desc]]>
 		<include refid="pagingFooter" />
 	</select>
+	<!-- 게시판 검색 결과 게시글 수 -->
 	<select id="countArticles" resultType="int">
 		<![CDATA[select count(board_no) from boardj]]>
 		<include refid="search" />
@@ -31,7 +42,8 @@
 		<choose>
 			<when test="searchOption == 'all'">
 				where title like '%'||#{keyword}||'%'
-				or content like '%'||#{keyword}||'%'
+				or content like
+				'%'||#{keyword}||'%'
 			</when>
 			<otherwise>
 				where ${searchOption} like '%'||#{keyword}||'%'
@@ -40,11 +52,11 @@
 	</sql>
 	<sql id="pagingHeader">
 		select * from (
-			select rownum as rn, A.*
-			from (
+		select rownum as rn, A.*
+		from (
 	</sql>
 	<sql id="pagingFooter">
-			) A
+		) A
 		) where rn between #{start} and #{end}
 	</sql>
 </mapper>

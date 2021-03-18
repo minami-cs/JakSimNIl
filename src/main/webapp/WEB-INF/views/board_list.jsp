@@ -55,7 +55,7 @@
 				<td class="number">${article.board_no }</td>
 				<td class="duration">${article.j_days }일</td>
 				<td><a
-					href="./articledetail?board_no=${article.board_no}&curPage=${map.boardPageMaker.curPage}">
+					href="./boarddetail?board_no=${article.board_no}&curPage=${map.boardPageMaker.curPage}">
 						${article.title} </a></td>
 				<td class="writer">${article.writer }</td>
 				<td class="date"><fmt:formatDate value="${article.w_date }"

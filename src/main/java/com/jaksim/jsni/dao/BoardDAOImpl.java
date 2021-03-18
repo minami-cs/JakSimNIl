@@ -48,4 +48,11 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.update("mapper.board.updateHit", board_no);
 	}
 
+	@Override
+	public void modifyArticle(Board article) throws Exception {
+		sqlSession.update("mapper.board.updateArticle", article);
+	}
+	
+	
+
 }
