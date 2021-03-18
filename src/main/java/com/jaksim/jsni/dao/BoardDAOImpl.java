@@ -43,4 +43,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne("mapper.board.countArticles", map);
 	}
 
+	@Override
+	public void countHit(int board_no) throws Exception {
+		sqlSession.update("mapper.board.updateHit", board_no);
+	}
+
 }

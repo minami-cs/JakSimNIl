@@ -46,6 +46,7 @@
 			<td class="title" id="thead">제목</td>
 			<td class="writer" id="thead">작성자</td>
 			<td class="date" id="thead">작성일</td>
+			<td class="hit" id="thead">조회</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -59,10 +60,11 @@
 				<td class="writer">${article.writer }</td>
 				<td class="date"><fmt:formatDate value="${article.w_date }"
 						pattern="yy.MM.dd" /></td>
+				<td class="hit">${article.v_count }</td>
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="5" align="center"><c:if
+			<td colspan="6" align="center"><c:if
 					test="${map.boardPageMaker.curView > 1}">
 					<a href="./boardlist?curPage=1">[처음]</a>
 				</c:if> <c:if test="${map.boardPageMaker.curView > 1}">

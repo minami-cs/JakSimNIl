@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+#a_wrap {
+	max-width: 900px;
+	margin: 0 auto;
+	min-height: 700px;
+}
+
+#a_table {
+	width: 800px;
+	margin: 0 auto;
+}
+
+#a_table thead td {
+	border-bottom: 1px solid #F11C6E;
+	height: 60px;
+	padding: 8px 0;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+#a_table tbody td {
+	padding: 0;
+	padding-top: 20px;
+	text-align: left;
+}
+
+#btn_box {
+	align-items: center;
+	text-align: center;
+}

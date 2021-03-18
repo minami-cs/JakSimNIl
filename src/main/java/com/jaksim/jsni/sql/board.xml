@@ -7,6 +7,9 @@
 		<![CDATA[insert into boardj(board_no,category,writer,title,content,j_days)
 		values((SELECT NVL(MAX(board_no)+1,1) FROM boardj),#{category},#{writer},#{title},#{content},#{j_days})]]>
 	</insert>
+	<update id="updateHit" parameterType="int">
+		<![CDATA[update boardj set v_count = v_count + 1 where board_no = #{board_no}]]>
+	</update>
 	<select id="selectArticle"
 		resultType="com.jaksim.jsni.bean.Board" parameterType="int">
 		<![CDATA[select * from boardj where board_no = #{board_no} ]]>

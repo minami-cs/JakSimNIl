@@ -9,4 +9,5 @@ public interface BoardDAO {
 	public Board queryArticle(int board_no) throws Exception;
 	public List<Board> queryArticles(int start, int end, String searchOption, String keyword) throws Exception;
 	public int countArticle(String searchOption, String keyword) throws Exception;
+	public void countHit(int board_no) throws Exception;
 }

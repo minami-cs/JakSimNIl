@@ -68,12 +68,15 @@ public class BoardController {
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			int curPage = Integer.parseInt(request.getParameter("curPage"));
 			// System.out.println(board_no);
 			Board article = boardDao.queryArticle(board_no);
 			if (article == null)
 				throw new Exception();
+			modelAndView.addObject("curPage", curPage);
 			modelAndView.addObject("article", article);
 			modelAndView.addObject("page", "article_view");
+			boardDao.countHit(board_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 			modelAndView.addObject("err", "오류");
