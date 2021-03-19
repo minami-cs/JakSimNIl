@@ -27,11 +27,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public ModelAndView join(HttpServletRequest request) {
+	public ModelAndView join(HttpServletRequest request) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		Member mem = null;
 		
-		try {
+		/* try { */
 			// id중복체크
 			mem = memberDao.queryMember(request.getParameter("id"));
 			if (mem != null) {
@@ -47,10 +47,10 @@ public class MemberController {
 				memberDao.insertMember(mem);
 				modelAndView.addObject("page", "login_form");
 			}
-		} catch(Exception e) {
+/*		} catch(Exception e) {
 			modelAndView.addObject("err", "회원가입 오류");
 			modelAndView.addObject("page", "err");
-		}
+		}*/
 		modelAndView.setViewName("template");
 		return modelAndView;
 	}
