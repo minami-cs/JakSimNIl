@@ -93,9 +93,11 @@ public class BoardController {
 
 	@RequestMapping(value = "/boardlist", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView boardlist(@RequestParam(defaultValue = "all") String searchOption,
-			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage)
+			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage, HttpServletRequest request)
 			throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("id");
 		try {
 			// 게시글 수 계산
 			int count = boardDao.countArticle(searchOption, keyword);
@@ -116,6 +118,7 @@ public class BoardController {
 			map.put("keyword", keyword);
 			map.put("boardPageMaker", boardPageMaker);
 			modelAndView.addObject("map", map);
+			modelAndView.addObject("userId", userId);
 			//System.out.println(curPage);
 		} catch (Exception e) {
 			e.printStackTrace();

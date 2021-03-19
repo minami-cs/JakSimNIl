@@ -6,6 +6,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/boardlist.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<c:if test="${userId == null}">
+	<script>
+	$(function() {
+		$('#write').on('click', function() {
+			alert("로그인 후에 글쓰기가 가능합니다.");
+			location.href="./login";
+			return false;
+		});
+	});
+	</script>
+</c:if>
 <h2>함께하는 작심N일</h2>
 <div id="searchbox">
 	<form action="./boardlist" method="post" name="searchArticleForm">
