@@ -73,6 +73,7 @@ public class BoardController {
 			Board article = boardDao.queryArticle(board_no);
 			if (article == null)
 				throw new Exception();
+			modelAndView.addObject("board_no", board_no);
 			modelAndView.addObject("curPage", curPage);
 			modelAndView.addObject("article", article);
 			modelAndView.addObject("page", "board_detail");
@@ -111,7 +112,7 @@ public class BoardController {
 			map.put("keyword", keyword);
 			map.put("boardPageMaker", boardPageMaker);
 			modelAndView.addObject("map", map);
-			System.out.println(curPage);
+			//System.out.println(curPage);
 		} catch (Exception e) {
 			e.printStackTrace();
 			modelAndView.addObject("err", "게시판 오류");
@@ -170,6 +171,7 @@ public class BoardController {
 	@RequestMapping(value = "/boarddelete", method = RequestMethod.GET)
 	public String boarddelete(HttpServletRequest request, Model model) throws Exception {
 		int board_no = Integer.parseInt(request.getParameter("board_no"));
+		System.out.println(board_no);
 		boardDao.deleteArticle(board_no);
 		return "redirect:./boardlist";
 	}
