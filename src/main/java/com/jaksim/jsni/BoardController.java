@@ -99,7 +99,10 @@ public class BoardController {
 			BoardPageMaker boardPageMaker = new BoardPageMaker(count, curPage);
 			int start = boardPageMaker.getPageStart();
 			int end = boardPageMaker.getPageEnd();
-
+			/*
+			 * System.out.println(start); System.out.println(end);
+			 * System.out.println(searchOption); System.out.println(keyword);
+			 */
 			List<Board> articles = boardDao.queryArticles(start, end, searchOption, keyword);
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("articles", articles);
@@ -108,7 +111,7 @@ public class BoardController {
 			map.put("keyword", keyword);
 			map.put("boardPageMaker", boardPageMaker);
 			modelAndView.addObject("map", map);
-
+			System.out.println(curPage);
 		} catch (Exception e) {
 			e.printStackTrace();
 			modelAndView.addObject("err", "게시판 오류");
@@ -122,27 +125,38 @@ public class BoardController {
 	@RequestMapping(value = "/boardmodify", method = RequestMethod.GET)
 	public String boardmodify(HttpServletRequest request, Model model) throws Exception {
 		int board_no = Integer.parseInt(request.getParameter("board_no"));
+		int curPage = Integer.parseInt(request.getParameter("curPage"));
+		HttpSession session = request.getSession();
+		session.setAttribute("board_no", board_no);
 		Board article = boardDao.queryArticle(board_no);
 		model.addAttribute("writer", article.getWriter());
 		model.addAttribute("title", article.getTitle());
 		model.addAttribute("category", article.getCategory());
 		model.addAttribute("content", article.getContent());
 		model.addAttribute("board_no", board_no);
+		model.addAttribute("curPage", curPage);
 		model.addAttribute("page", "board_modify_form");
 		return "template";
 	}
 	
-	@RequestMapping(value = "/boardupdate", method = RequestMethod.POST)
-	public ModelAndView boardupdate(HttpServletRequest request) {
+	@RequestMapping(value = "/boardmodify", method = RequestMethod.POST)
+	public ModelAndView boardmodify(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
+		int board_no = Integer.parseInt(request.getParameter("board_no"));
+		int curPage = Integer.parseInt(request.getParameter("curPage"));
 		try {
 			Board article = new Board();
 			article.setCategory(request.getParameter("category"));
+			article.setWriter(request.getParameter("writer"));
 			article.setTitle(request.getParameter("title"));
 			article.setContent(request.getParameter("content"));
 			article.setJ_days(Integer.parseInt(request.getParameter("j_days")));
+			article.setBoard_no(board_no);
+			
 			boardDao.modifyArticle(article);
-			modelAndView.addObject("article", article);
+			//System.out.println(curPage);
+			modelAndView.addObject("board_no", board_no);
+			modelAndView.addObject("curPage", curPage);
 			modelAndView.setViewName("redirect:./boardlist");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -151,5 +165,12 @@ public class BoardController {
 			modelAndView.setViewName("template");
 		}
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/boarddelete", method = RequestMethod.GET)
+	public String boarddelete(HttpServletRequest request, Model model) throws Exception {
+		int board_no = Integer.parseInt(request.getParameter("board_no"));
+		boardDao.deleteArticle(board_no);
+		return "redirect:./boardlist";
 	}
 }

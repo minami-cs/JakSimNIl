@@ -21,5 +21,5 @@
 <div id="btn_box">
 	<a href="./boardlist?curPage=${curPage}"><button>목록</button></a>
 	<a href="./boardmodify?board_no=${article.board_no }&curPage=${curPage }"><button>수정하기</button></a>
-	<button>삭제하기</button>
+	<a href="./boarddelete"><button>삭제하기</button></a>
 </div>

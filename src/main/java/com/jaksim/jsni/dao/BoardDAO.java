@@ -11,4 +11,5 @@ public interface BoardDAO {
 	public int countArticle(String searchOption, String keyword) throws Exception;
 	public void countHit(int board_no) throws Exception;
 	public void modifyArticle(Board article) throws Exception;
+	public void deleteArticle(int board_no) throws Exception;
 }
