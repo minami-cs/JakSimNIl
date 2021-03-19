@@ -20,7 +20,9 @@
 	</table>
 </div>
 <div id="btn_box">
-	<a href="./boardlist?curPage=${curPage}"><button>목록</button></a> <a
-		href="./boardmodify?board_no=${article.board_no }&curPage=${curPage }"><button>수정하기</button></a>
-	<a href="./boarddelete?board_no=${article.board_no }"><button>삭제하기</button></a>
+	<a href="./boardlist?curPage=${curPage}"><button>목록</button></a>
+	<c:if test="${userId == article.writer}">
+		<a href="./boardmodify?board_no=${article.board_no }&curPage=${curPage }"><button>수정하기</button></a>
+		<a href="./boarddelete?board_no=${article.board_no }"><button>삭제하기</button></a>
+	</c:if>
 </div>

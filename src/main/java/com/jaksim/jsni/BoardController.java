@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jaksim.jsni.bean.Board;
 import com.jaksim.jsni.bean.BoardPageMaker;
+import com.jaksim.jsni.bean.Member;
 import com.jaksim.jsni.dao.BoardDAO;
 
 @Controller
@@ -66,6 +67,8 @@ public class BoardController {
 	@RequestMapping(value = "/boarddetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView articledetail(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("id");
 		try {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
 			int curPage = Integer.parseInt(request.getParameter("curPage"));
@@ -75,6 +78,7 @@ public class BoardController {
 				throw new Exception();
 			modelAndView.addObject("board_no", board_no);
 			modelAndView.addObject("curPage", curPage);
+			modelAndView.addObject("userId", userId);
 			modelAndView.addObject("article", article);
 			modelAndView.addObject("page", "board_detail");
 			boardDao.countHit(board_no);

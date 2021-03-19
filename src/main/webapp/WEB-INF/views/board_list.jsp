@@ -89,7 +89,7 @@
 				</c:if></td>
 		</tr>
 		<tr>
-			<td colspan="5" align="right"><a href="./boardwrite"><button
+			<td colspan="6" align="right"><a href="./boardwrite"><button
 						id="write">글쓰기</button></a></td>
 		</tr>
 	</tbody>
