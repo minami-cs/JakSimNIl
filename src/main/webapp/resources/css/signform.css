@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+#formbox {
+	top: 300px;
+	position: absolute;
+	left: 50%;
+	margin-left: -200px;
+}
+
 form, table {
 	width: 400px;
 	margin: 0 auto;
@@ -29,4 +36,10 @@ tr {
 
 input {
 	width: 70%;
+}
+
+#gotojoin {
+	margin: 0 auto;
+	width: 400px;
+	text-align: center;
 }
