@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.reply">
+	<!-- 댓글 생성 -->
+	<insert id="insertReply"
+		parameterType="com.jaksim.jsni.bean.Reply">
+		<![CDATA[insert into replyj(reply_no,board_no,r_writer,r_content)
+		values(replyj_seq.NEXTVAL,#{board_no},#{r_writer},#{r_content})]]>
+	</insert>
+	<!-- 댓글 목록 -->
+	<select id="queryReplies">
+		<![CDATA[select * from replyj
+		where board_no = #{board_no}]]>
+	</select>
+</mapper>
+

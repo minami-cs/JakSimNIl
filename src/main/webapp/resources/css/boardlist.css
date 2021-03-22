@@ -107,7 +107,7 @@ form>select {
 
 #resultbox {
 	display: block;
-	margin-left: 100px;
+	text-align: center;
 }
 
 @media screen and (max-width: 1000px) {
