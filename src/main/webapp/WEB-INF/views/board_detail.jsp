@@ -25,10 +25,13 @@
 <div id="r_wrap">
 	<table id="r_table">
 		<tr>
+			<td>댓글</td>
+		</tr>
+		<tr>
 			<td><textarea rows="8" cols="110"></textarea></td>
 		</tr>
 		<tr>
-			<td><button>댓글 등록</button></td>
+			<td><button id="r_btn">댓글 등록</button></td>
 		</tr>
 	</table>
 </div>

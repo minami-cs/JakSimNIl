@@ -36,6 +36,12 @@
 	margin: 0 auto;
 }
 
+#r_btn {
+	width: 160px;
+	float: right;
+	padding: 10px 30px;
+}
+
 #btn_box {
 	align-items: center;
 	text-align: center;
